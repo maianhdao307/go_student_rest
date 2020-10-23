@@ -27,8 +27,8 @@ func (_self CourseHandlers) CreateCourse(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	convertedCourse := transformCourseRequestToCourseModel(course)
-	result, err := courseServices.CreateCourse(convertedCourse)
+	convertedCourse := TransformCourseRequestToCourseModel(course)
+	result, err := courseServices.CreateCourse(&convertedCourse)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -42,12 +42,12 @@ func (_self CourseHandlers) CreateCourse(w http.ResponseWriter, r *http.Request)
 	return
 }
 
-func transformCourseRequestToCourseModel(request CourseRequest) models.CourseModel {
+func TransformCourseRequestToCourseModel(request CourseRequest) models.CourseModel {
 	return models.CourseModel{
 		Name:      request.Name,
 		StartTime: request.StartTime,
 		EndTime:   request.EndTime,
-		Teacher:   models.TeacherModel{
+		Teacher:   &models.TeacherModel{
 			ID: request.TeacherID,
 		},
 	}
@@ -96,8 +96,8 @@ func (_self CourseHandlers) UpdateCourse(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	convertedCourse := transformCourseRequestToCourseModel(course)
-	err := courseServices.UpdateCourse(id, convertedCourse)
+	convertedCourse := TransformCourseRequestToCourseModel(course)
+	err := courseServices.UpdateCourse(id, &convertedCourse)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

@@ -1,14 +1,11 @@
-package db
+package testhelpers
 
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/lib/pq"
 )
 
-var DB *sql.DB
-
-func ConnectDB() (*sql.DB, error) {
+func ConnectFailfDB() (*sql.DB, error) {
 	const (
 		host     = "localhost"
 		port     = 5432

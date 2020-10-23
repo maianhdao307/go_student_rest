@@ -1,6 +1,7 @@
 package models
 
 type StudentModel struct {
+	ID          int
 	StudentID   string
 	FirstName   string
 	LastName    string
@@ -14,20 +15,22 @@ type UpdateStudentModel struct {
 }
 
 type TeacherModel struct {
-	ID int
+	ID          int
 	FirstName   string
 	LastName    string
 	DateOfBirth string
 }
 
 type CourseModel struct {
+	ID        int
 	Name      string
 	StartTime string
 	EndTime   string
-	Teacher   TeacherModel
+	Teacher   *TeacherModel
 }
 
 type RegisterCourseModel struct {
-	Student StudentModel
-	Course  CourseModel
+	Student *StudentModel
+	Course  *CourseModel
+
 }

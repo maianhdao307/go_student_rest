@@ -28,7 +28,7 @@ func (_self TeacherHandlers) CreateTeacher(w http.ResponseWriter, r *http.Reques
 	}
 
 	convertedTeacher := transformTeacherRequestToTeacherModel(teacher)
-	result, err := teacherServices.CreateTeacher(convertedTeacher)
+	result, err := teacherServices.CreateTeacher(&convertedTeacher)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -108,7 +108,7 @@ func (_self TeacherHandlers) UpdateTeacher(w http.ResponseWriter, r *http.Reques
 	}
 
 	convertedTeacher := transformTeacherRequestToTeacherModel(teacher)
-	err := teacherServices.UpdateTeacher(id, convertedTeacher)
+	err := teacherServices.UpdateTeacher(id, &convertedTeacher)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

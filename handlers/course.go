@@ -9,9 +9,9 @@ import (
 	"student_rest/services"
 )
 
-type CourseHandlers struct{}
-
-var courseServices = services.CourseServices{}
+type CourseHandlers struct{
+	services.CourseServices
+}
 
 // CreateStudent creates new course
 func (_self CourseHandlers) CreateCourse(w http.ResponseWriter, r *http.Request) {
@@ -28,7 +28,7 @@ func (_self CourseHandlers) CreateCourse(w http.ResponseWriter, r *http.Request)
 	}
 
 	convertedCourse := TransformCourseRequestToCourseModel(course)
-	result, err := courseServices.CreateCourse(&convertedCourse)
+	result, err := _self.CourseServices.CreateCourse(&convertedCourse)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -55,7 +55,7 @@ func TransformCourseRequestToCourseModel(request CourseRequest) models.CourseMod
 
 func (_self CourseHandlers) GetCourseByID(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
-	result, err := courseServices.GetCourseById(id)
+	result, err := _self.CourseServices.GetCourseByID(id)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -71,7 +71,7 @@ func (_self CourseHandlers) GetCourseByID(w http.ResponseWriter, r *http.Request
 func (_self CourseHandlers) DeleteCourse(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 
-	if err := courseServices.DeleteCourse(id); err != nil {
+	if err := _self.CourseServices.DeleteCourse(id); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -97,7 +97,7 @@ func (_self CourseHandlers) UpdateCourse(w http.ResponseWriter, r *http.Request)
 	}
 
 	convertedCourse := TransformCourseRequestToCourseModel(course)
-	err := courseServices.UpdateCourse(id, &convertedCourse)
+	err := _self.CourseServices.UpdateCourse(id, &convertedCourse)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

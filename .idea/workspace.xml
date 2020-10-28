@@ -20,24 +20,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25b22af6-93a5-4566-a4ec-f1d3994d9fc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/repositories/testdata/student/student.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repositories/testdata/teacher/teacher.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testhelpers/connectDB.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/connectDB.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/connectDB.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.local.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prod.env" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handlers/course.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/course.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/course_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/course_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handlers/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/models.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handlers/student.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/student.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/student_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/student_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handlers/teacher.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/teacher.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/teacher_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/teacher_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/models.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repositories/course.go" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/course.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/course_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/course_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repositories/student.go" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/student.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repositories/student_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/student_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repositories/teacher.go" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/teacher.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/teacher_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/teacher_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/testdata/register_course/register_course.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/routes/routes.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/course.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/course.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/course_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/course_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/student.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/student.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/student_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/student_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/teacher.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/teacher.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/teacher_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/teacher_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testhelpers/connectDb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/fĩxture.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fĩxture.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,33 +87,74 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/postgresdbinit" />
+      <recent name="$PROJECT_DIR$/repositories/testdata/teacher" />
+      <recent name="$PROJECT_DIR$/repositories/testdata/student" />
+      <recent name="$PROJECT_DIR$/repositories/testdata" />
       <recent name="$PROJECT_DIR$/models" />
-      <recent name="$PROJECT_DIR$/db" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build student_rest">
-    <configuration name="go build student.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Test.go test student_rest/handlers">
+    <configuration name="Test_CreateCourse in student_rest/handlers" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="go_student_rest" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/services/student.go" />
-      <package value="student_rest" />
+      <working_directory value="$PROJECT_DIR$/handlers" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="student_rest/handlers" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_CreateCourse\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build student_rest" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_CreateStudent in student_rest/handlers" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="go_student_rest" />
-      <working_directory value="$PROJECT_DIR$" />
+      <working_directory value="$PROJECT_DIR$/handlers" />
+      <framework value="gotest" />
       <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/main.go" />
-      <package value="student_rest" />
+      <package value="student_rest/handlers" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_CreateStudent\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test_GetStudentByID in student_rest/handlers" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go_student_rest" />
+      <working_directory value="$PROJECT_DIR$/handlers" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="student_rest/handlers" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTest_GetStudentByID\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go test student_rest/handlers" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go_student_rest" />
+      <working_directory value="$PROJECT_DIR$/handlers" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="student_rest/handlers" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go test student_rest/services" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go_student_rest" />
+      <working_directory value="$PROJECT_DIR$/services" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="student_rest/services" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build student_rest" />
-        <item itemvalue="Go Build.go build student.go" />
+        <item itemvalue="Go Test.go test student_rest/handlers" />
+        <item itemvalue="Go Test.Test_CreateCourse in student_rest/handlers" />
+        <item itemvalue="Go Test.Test_GetStudentByID in student_rest/handlers" />
+        <item itemvalue="Go Test.Test_CreateStudent in student_rest/handlers" />
+        <item itemvalue="Go Test.go test student_rest/services" />
       </list>
     </recent_temporary>
   </component>
@@ -132,46 +186,46 @@
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state x="553" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.977@0.23.1920.977" timestamp="1603433692535" />
-    <state x="697" y="320" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603444969673">
+    <state x="697" y="320" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603783304859">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state x="697" y="320" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.977@0.23.1920.977" timestamp="1603444969673" />
+    <state x="697" y="320" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.977@0.23.1920.977" timestamp="1603783304859" />
     <state x="546" y="193" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1603335577237">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state x="546" y="193" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.23.1920.977@0.23.1920.977" timestamp="1603335577237" />
-    <state width="1865" height="325" key="GridCell.Tab.0.bottom" timestamp="1603447601745">
+    <state width="1865" height="210" key="GridCell.Tab.0.bottom" timestamp="1603858035457">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1865" height="325" key="GridCell.Tab.0.bottom/0.23.1920.977@0.23.1920.977" timestamp="1603447601745" />
-    <state width="1865" height="325" key="GridCell.Tab.0.center" timestamp="1603447601744">
+    <state width="1865" height="210" key="GridCell.Tab.0.bottom/0.23.1920.977@0.23.1920.977" timestamp="1603858035457" />
+    <state width="1865" height="210" key="GridCell.Tab.0.center" timestamp="1603858035456">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1865" height="325" key="GridCell.Tab.0.center/0.23.1920.977@0.23.1920.977" timestamp="1603447601744" />
-    <state width="1865" height="325" key="GridCell.Tab.0.left" timestamp="1603447601744">
+    <state width="1865" height="210" key="GridCell.Tab.0.center/0.23.1920.977@0.23.1920.977" timestamp="1603858035456" />
+    <state width="1865" height="210" key="GridCell.Tab.0.left" timestamp="1603858035455">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1865" height="325" key="GridCell.Tab.0.left/0.23.1920.977@0.23.1920.977" timestamp="1603447601744" />
-    <state width="1865" height="325" key="GridCell.Tab.0.right" timestamp="1603447601745">
+    <state width="1865" height="210" key="GridCell.Tab.0.left/0.23.1920.977@0.23.1920.977" timestamp="1603858035455" />
+    <state width="1865" height="210" key="GridCell.Tab.0.right" timestamp="1603858035456">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1865" height="325" key="GridCell.Tab.0.right/0.23.1920.977@0.23.1920.977" timestamp="1603447601745" />
-    <state width="1865" height="325" key="GridCell.Tab.1.bottom" timestamp="1603447601746">
+    <state width="1865" height="210" key="GridCell.Tab.0.right/0.23.1920.977@0.23.1920.977" timestamp="1603858035456" />
+    <state width="1865" height="181" key="GridCell.Tab.1.bottom" timestamp="1603857387753">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1865" height="325" key="GridCell.Tab.1.bottom/0.23.1920.977@0.23.1920.977" timestamp="1603447601746" />
-    <state width="1865" height="325" key="GridCell.Tab.1.center" timestamp="1603447601745">
+    <state width="1865" height="181" key="GridCell.Tab.1.bottom/0.23.1920.977@0.23.1920.977" timestamp="1603857387753" />
+    <state width="1865" height="181" key="GridCell.Tab.1.center" timestamp="1603857387751">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1865" height="325" key="GridCell.Tab.1.center/0.23.1920.977@0.23.1920.977" timestamp="1603447601745" />
-    <state width="1865" height="325" key="GridCell.Tab.1.left" timestamp="1603447601745">
+    <state width="1865" height="181" key="GridCell.Tab.1.center/0.23.1920.977@0.23.1920.977" timestamp="1603857387751" />
+    <state width="1865" height="181" key="GridCell.Tab.1.left" timestamp="1603857387750">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1865" height="325" key="GridCell.Tab.1.left/0.23.1920.977@0.23.1920.977" timestamp="1603447601745" />
-    <state width="1865" height="325" key="GridCell.Tab.1.right" timestamp="1603447601746">
+    <state width="1865" height="181" key="GridCell.Tab.1.left/0.23.1920.977@0.23.1920.977" timestamp="1603857387750" />
+    <state width="1865" height="181" key="GridCell.Tab.1.right" timestamp="1603857387752">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1865" height="325" key="GridCell.Tab.1.right/0.23.1920.977@0.23.1920.977" timestamp="1603447601746" />
+    <state width="1865" height="181" key="GridCell.Tab.1.right/0.23.1920.977@0.23.1920.977" timestamp="1603857387752" />
     <state x="797" y="221" key="SettingsEditor" timestamp="1603333437502">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
@@ -185,16 +239,29 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/handlers/student.go</url>
-          <line>124</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/services/teacher.go</url>
+          <line>27</line>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/handlers/student.go</url>
-          <line>149</line>
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/handlers/course.go</url>
+          <line>19</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/handlers/models.go</url>
+          <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/go_student_rest$go_test_repositories.out" NAME="go test repositories Coverage Results" MODIFIED="1603787014374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go_student_rest$Test_RegisterCourse_in_student_rest_services.out" NAME="Test_RegisterCourse in student_rest/services Coverage Results" MODIFIED="1603786250551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go_student_rest$go_test_student_rest_handlers.out" NAME="go test student_rest/handlers Coverage Results" MODIFIED="1603857942512" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go_student_rest$go_test_student_rest_services.out" NAME="go test student_rest/services Coverage Results" MODIFIED="1603852527135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go_student_rest$Test_CreateStudent_in_student_rest_handlers.out" NAME="Test_CreateStudent in student_rest/handlers Coverage Results" MODIFIED="1603852702431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go_student_rest$Test_RegisterCourse_in_student_rest_repositories.out" NAME="Test_RegisterCourse in student_rest/repositories Coverage Results" MODIFIED="1603693634301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/go_student_rest$go_test_student_rest_repositories.out" NAME="go test student_rest/repositories Coverage Results" MODIFIED="1603706373459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

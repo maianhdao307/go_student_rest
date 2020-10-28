@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"github.com/go-chi/chi"
 	"net/http"
 	"student_rest/models"
 
@@ -9,38 +10,37 @@ import (
 )
 
 type StudentHandlers struct{
-	services.StudentServices
+	StudentServices services.StudentServices
 }
 
-// CreateStudent creates new student
-//func (_self StudentHandlers) CreateStudent(w http.ResponseWriter, r *http.Request) {
-//	var student StudentRequest
-//
-//	if err := json.NewDecoder(r.Body).Decode(&student); err != nil {
-//		http.Error(w, err.Error(), http.StatusBadRequest)
-//		return
-//	}
-//
-//	if err := student.validation(); err != nil {
-//		http.Error(w, err.Error(), http.StatusBadRequest)
-//		return
-//	}
-//
-//	convertedStudent := transformStudentRequestToStudentModel(student)
-//	result, err := studentServices.CreateStudent(&convertedStudent)
-//
-//	if err != nil {
-//		http.Error(w, err.Error(), http.StatusInternalServerError)
-//		return
-//	}
-//
-//	json.NewEncoder(w).Encode(StudentResponse{
-//		Success: true,
-//		Student: result,
-//	})
-//	return
-//}
-//
+func (_self StudentHandlers) CreateStudent(w http.ResponseWriter, r *http.Request) {
+	var student StudentRequest
+
+	if err := json.NewDecoder(r.Body).Decode(&student); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if err := student.validation(); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	convertedStudent := transformStudentRequestToStudentModel(student)
+	result, err := _self.StudentServices.CreateStudent(convertedStudent)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(StudentResponse{
+		Success: true,
+		Student: result,
+	})
+	return
+}
+
 func transformStudentRequestToStudentModel(request StudentRequest) *models.StudentModel {
 	return &models.StudentModel{
 		FirstName:   request.FirstName,
@@ -48,78 +48,63 @@ func transformStudentRequestToStudentModel(request StudentRequest) *models.Stude
 		DateOfBirth: request.DateOfBirth,
 	}
 }
-//
-//func (_self StudentHandlers) GetStudents(w http.ResponseWriter, r *http.Request) {
-//	result, err := studentServices.GetStudents()
-//
-//	if err != nil {
-//		http.Error(w, err.Error(), http.StatusInternalServerError)
-//		return
-//	}
-//
-//	json.NewEncoder(w).Encode(StudentsResponse{
-//		Success:  true,
-//		Students: result,
-//	})
-//}
-//
-//func (_self StudentHandlers) GetStudentByID(w http.ResponseWriter, r *http.Request) {
-//	id := chi.URLParam(r, "id")
-//	result, err := studentServices.GetStudentByID(id)
-//
-//	if err != nil {
-//		http.Error(w, err.Error(), http.StatusInternalServerError)
-//		return
-//	}
-//
-//	json.NewEncoder(w).Encode(StudentResponse{
-//		Success: true,
-//		Student: result,
-//	})
-//}
-//
-//func (_self StudentHandlers) DeleteStudent(w http.ResponseWriter, r *http.Request) {
-//	id := chi.URLParam(r, "id")
-//
-//	if err := studentServices.DeleteStudent(id); err != nil {
-//		http.Error(w, err.Error(), http.StatusInternalServerError)
-//		return
-//	}
-//
-//	json.NewEncoder(w).Encode(SuccessResponse{
-//		Success: true,
-//	})
-//}
-//
-//func (_self StudentHandlers) UpdateStudent(w http.ResponseWriter, r *http.Request) {
-//	id := chi.URLParam(r, "id")
-//
-//	var student StudentRequest
-//
-//	if err := json.NewDecoder(r.Body).Decode(&student); err != nil {
-//		http.Error(w, err.Error(), http.StatusBadRequest)
-//		return
-//	}
-//
-//	if err := student.validation(); err != nil {
-//		http.Error(w, err.Error(), http.StatusBadRequest)
-//		return
-//	}
-//
-//	convertedStudent := transformStudentRequestToStudentModel(student)
-//	err := studentServices.UpdateStudent(id, &convertedStudent)
-//
-//	if err != nil {
-//		http.Error(w, err.Error(), http.StatusInternalServerError)
-//		return
-//	}
-//
-//	json.NewEncoder(w).Encode(SuccessResponse{
-//		Success: true,
-//	})
-//}
 
 
+func (_self StudentHandlers) GetStudentByID(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+	result, err := _self.StudentServices.GetStudentByID(id)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(StudentResponse{
+		Success: true,
+		Student: result,
+	})
+}
+
+func (_self StudentHandlers) DeleteStudent(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+
+	if err := _self.StudentServices.DeleteStudent(id); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(SuccessResponse{
+		Success: true,
+	})
+}
+
+func (_self StudentHandlers) UpdateStudent(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+
+	var student StudentRequest
+
+	if err := json.NewDecoder(r.Body).Decode(&student); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if err := student.validation(); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	convertedStudent := transformStudentRequestToStudentModel(student)
+	err := _self.StudentServices.UpdateStudent(id, convertedStudent)
+
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(SuccessResponse{
+		Success: true,
+	})
+}
 
 func (_self StudentHandlers) RegisterCourse(w http.ResponseWriter, r *http.Request) {
 	var registerCourseRequest RegisterCourseRequest
@@ -137,12 +122,12 @@ func (_self StudentHandlers) RegisterCourse(w http.ResponseWriter, r *http.Reque
 	registerCourseModel := models.RegisterCourseModel{
 		Student: transformStudentRequestToStudentModel(*registerCourseRequest.Student),
 		Course: &models.CourseModel{
-			Name: registerCourseRequest.Course.Name,
+			Name:      registerCourseRequest.Course.Name,
 			StartTime: registerCourseRequest.Course.StartTime,
-			EndTime: registerCourseRequest.Course.EndTime,
+			EndTime:   registerCourseRequest.Course.EndTime,
 			Teacher: &models.TeacherModel{
-				FirstName: registerCourseRequest.Course.Teacher.FirstName,
-				LastName: registerCourseRequest.Course.Teacher.LastName,
+				FirstName:   registerCourseRequest.Course.Teacher.FirstName,
+				LastName:    registerCourseRequest.Course.Teacher.LastName,
 				DateOfBirth: registerCourseRequest.Course.Teacher.DateOfBirth,
 			},
 		},
@@ -157,7 +142,7 @@ func (_self StudentHandlers) RegisterCourse(w http.ResponseWriter, r *http.Reque
 	json.NewEncoder(w).Encode(RegisterCourseResponse{
 		Success: true,
 		Student: result.Student,
-		Course: result.Course,
+		Course:  result.Course,
 	})
 	return
 }

@@ -1,16 +1,26 @@
 package repositories
 
 import (
-	"student_rest/db"
+	"database/sql"
 	"student_rest/models"
 )
 
-type CourseRepositories struct{}
 
-func (_self CourseRepositories) CreateCourse(course *CourseEntity) (*models.CourseModel, error) {
+type Course struct{
+	Db *sql.DB
+}
+
+type CourseRepositories interface {
+	CreateCourse(course *CourseEntity) (*models.CourseModel, error)
+	GetCourseByID(id string) (*models.CourseModel, error)
+	DeleteCourse(id string) error
+	UpdateCourse(id string, course *CourseEntity) error
+}
+
+func (_self Course) CreateCourse(course *CourseEntity) (*models.CourseModel, error) {
 	sqlStmt := `INSERT INTO courses("name", "start_time", "end_time", "teacher_id") VALUES ($1, $2, $3, $4) RETURNING id`
 	id := 0
-	err := db.DB.QueryRow(sqlStmt, course.Name, course.StartTime, course.EndTime, course.TeacherID).Scan(&id)
+	err := _self.Db.QueryRow(sqlStmt, course.Name, course.StartTime, course.EndTime, course.TeacherID).Scan(&id)
 
 	if err != nil {
 		return nil, err
@@ -19,7 +29,7 @@ func (_self CourseRepositories) CreateCourse(course *CourseEntity) (*models.Cour
 
 	sqlStmt = `SELECT * FROM teachers WHERE id=$1`
 	var teacher models.TeacherModel
-	err = db.DB.QueryRow(sqlStmt, course.TeacherID).Scan(&teacher.ID, &teacher.FirstName, &teacher.LastName, &teacher.DateOfBirth)
+	err = _self.Db.QueryRow(sqlStmt, course.TeacherID).Scan(&teacher.ID, &teacher.FirstName, &teacher.LastName, &teacher.DateOfBirth)
 
 	if err != nil {
 		return nil, err
@@ -35,17 +45,17 @@ func (_self CourseRepositories) CreateCourse(course *CourseEntity) (*models.Cour
 	return newCourse, nil
 }
 
-func (_self CourseRepositories) GetCourseById(id string) (*models.CourseModel, error) {
+func (_self Course) GetCourseByID(id string) (*models.CourseModel, error) {
 	sqlStmt := `SELECT * FROM courses WHERE id = $1`
 	var course CourseEntity
-	err := db.DB.QueryRow(sqlStmt, id).Scan(&course.ID, &course.Name, &course.StartTime, &course.EndTime, &course.TeacherID)
+	err := _self.Db.QueryRow(sqlStmt, id).Scan(&course.ID, &course.Name, &course.StartTime, &course.EndTime, &course.TeacherID)
 	if err != nil {
 		return nil, err
 	}
 
 	sqlStmt = `SELECT * FROM teachers WHERE id=$1`
 	var teacher models.TeacherModel
-	err = db.DB.QueryRow(sqlStmt, course.TeacherID).Scan(&teacher.ID, &teacher.FirstName, &teacher.LastName, &teacher.DateOfBirth)
+	err = _self.Db.QueryRow(sqlStmt, course.TeacherID).Scan(&teacher.ID, &teacher.FirstName, &teacher.LastName, &teacher.DateOfBirth)
 	if err != nil {
 		return nil, err
 	}
@@ -58,14 +68,14 @@ func (_self CourseRepositories) GetCourseById(id string) (*models.CourseModel, e
 	}, nil
 }
 
-func (_self CourseRepositories) DeleteCourse(id string) error {
+func (_self Course) DeleteCourse(id string) error {
 	sqlStmt := `DELETE FROM courses WHERE id=$1`
-	_, err := db.DB.Exec(sqlStmt, id)
+	_, err := _self.Db.Exec(sqlStmt, id)
 	return err
 }
 
-func (_self CourseRepositories) UpdateCourse(id string, course *CourseEntity) error {
+func (_self Course) UpdateCourse(id string, course *CourseEntity) error {
 	sqlStmt := `UPDATE courses SET "name" = $2, "start_time" = $3, "end_time" = $4, "teacher_id" = $5 WHERE id=$1`
-	_, err := db.DB.Exec(sqlStmt, id, course.Name, course.StartTime, course.EndTime, course.TeacherID)
+	_, err := _self.Db.Exec(sqlStmt, id, course.Name, course.StartTime, course.EndTime, course.TeacherID)
 	return err
 }

@@ -5,13 +5,20 @@ import (
 	"student_rest/repositories"
 )
 
-type CourseServices struct{}
+type Course struct {
+	repositories.CourseRepositories
+}
 
-var courseRepositories = repositories.CourseRepositories{}
+type CourseServices interface {
+	CreateCourse(course *models.CourseModel) (*models.CourseModel, error)
+	GetCourseByID(id string) (*models.CourseModel, error)
+	DeleteCourse(id string) error
+	UpdateCourse(id string, course *models.CourseModel) error
+}
 
-func (_self CourseServices) CreateCourse(course *models.CourseModel) (*models.CourseModel, error) {
+func (_self Course) CreateCourse(course *models.CourseModel) (*models.CourseModel, error) {
 	convertedCourse := transformCourseModelToCourseEntity(*course)
-	result, err := courseRepositories.CreateCourse(&convertedCourse)
+	result, err := _self.CourseRepositories.CreateCourse(&convertedCourse)
 	if err != nil {
 		return nil, err
 	}
@@ -28,18 +35,18 @@ func transformCourseModelToCourseEntity(model models.CourseModel) repositories.C
 	}
 }
 
-func (_self CourseServices) GetCourseById(id string) (*models.CourseModel, error) {
-	result, err := courseRepositories.GetCourseById(id)
+func (_self Course) GetCourseByID(id string) (*models.CourseModel, error) {
+	result, err := _self.CourseRepositories.GetCourseByID(id)
 	return result, err
 }
 
-func (_self CourseServices) DeleteCourse(id string) error {
-	err := courseRepositories.DeleteCourse(id)
+func (_self Course) DeleteCourse(id string) error {
+	err := _self.CourseRepositories.DeleteCourse(id)
 	return err
 }
 
-func (_self CourseServices) UpdateCourse(id string, course *models.CourseModel) error {
+func (_self Course) UpdateCourse(id string, course *models.CourseModel) error {
 	convertedCourse := transformCourseModelToCourseEntity(*course)
-	err := courseRepositories.UpdateCourse(id, &convertedCourse)
+	err := _self.CourseRepositories.UpdateCourse(id, &convertedCourse)
 	return err
 }

@@ -1,19 +1,17 @@
 package utils
 
 import (
+	"database/sql"
 	"io/ioutil"
 	"strings"
-	"student_rest/db"
 )
 
-func LoadFixture(path string) error {
+func LoadFixture(DB *sql.DB, path string) error {
 	file, err := ioutil.ReadFile(path)
 
 	if err != nil {
 		return err
 	}
-
-	DB, _ := db.ConnectDB()
 
 	requests := strings.Split(string(file), ";")
 

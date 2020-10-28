@@ -5,13 +5,20 @@ import (
 	"student_rest/repositories"
 )
 
-type TeacherServices struct {}
+type Teacher struct {
+	repositories.TeacherRepositories
+}
 
-var teacherRepositories = repositories.TeacherRepositories {}
+type TeacherServices interface {
+	CreateTeacher(teacher *models.TeacherModel) (*repositories.TeacherEntity, error)
+	GetTeacherByID(id string) (*repositories.TeacherEntity, error)
+	DeleteTeacher(id string) error
+	UpdateTeacher(id string, teacher *models.TeacherModel) error
+}
 
-func (_self TeacherServices) CreateTeacher(teacher *models.TeacherModel) (*repositories.TeacherEntity, error) {
+func (_self Teacher) CreateTeacher(teacher *models.TeacherModel) (*repositories.TeacherEntity, error) {
 	convertedTeacher := transformTeacherModelToTeacherEntity(teacher)
-	result, err := teacherRepositories.CreateTeacher(convertedTeacher)
+	result, err := _self.TeacherRepositories.CreateTeacher(convertedTeacher)
 	if err != nil {
 		return nil, err
 	}
@@ -26,23 +33,18 @@ func transformTeacherModelToTeacherEntity(model *models.TeacherModel) *repositor
 	}
 }
 
-func (_self TeacherServices) GetTeachers() ([]*repositories.TeacherEntity, error) {
-	result, err := teacherRepositories.GetTeachers()
+func (_self Teacher) GetTeacherByID(id string) (*repositories.TeacherEntity, error) {
+	result, err := _self.TeacherRepositories.GetTeacherByID(id)
 	return result, err
 }
 
-func (_self TeacherServices) GetTeacherByID(id string) (*repositories.TeacherEntity, error) {
-	result, err := teacherRepositories.GetTeacherByID(id)
-	return result, err
-}
-
-func (_self TeacherServices) DeleteTeacher(id string) error {
-	err := teacherRepositories.DeleteTeacher(id)
+func (_self Teacher) DeleteTeacher(id string) error {
+	err := _self.TeacherRepositories.DeleteTeacher(id)
 	return err
 }
 
-func (_self TeacherServices) UpdateTeacher(id string, teacher *models.TeacherModel) error {
+func (_self Teacher) UpdateTeacher(id string, teacher *models.TeacherModel) error {
 	convertedTeacher := transformTeacherModelToTeacherEntity(teacher)
-	err := teacherRepositories.UpdateTeacher(id, convertedTeacher)
+	err := _self.TeacherRepositories.UpdateTeacher(id, convertedTeacher)
 	return err
 }

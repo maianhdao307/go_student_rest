@@ -9,9 +9,9 @@ import (
 	"student_rest/services"
 )
 
-type TeacherHandlers struct {}
-
-var teacherServices = services.TeacherServices {}
+type TeacherHandlers struct {
+	services.TeacherServices
+}
 
 // CreateStudent creates new teacher
 func (_self TeacherHandlers) CreateTeacher(w http.ResponseWriter, r *http.Request) {
@@ -28,7 +28,7 @@ func (_self TeacherHandlers) CreateTeacher(w http.ResponseWriter, r *http.Reques
 	}
 
 	convertedTeacher := transformTeacherRequestToTeacherModel(teacher)
-	result, err := teacherServices.CreateTeacher(&convertedTeacher)
+	result, err := _self.TeacherServices.CreateTeacher(&convertedTeacher)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -50,23 +50,9 @@ func transformTeacherRequestToTeacherModel(request TeacherRequest) models.Teache
 	}
 }
 
-func (_self TeacherHandlers) GetTeachers(w http.ResponseWriter, r *http.Request) {
-	result, err := teacherServices.GetTeachers()
-
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	json.NewEncoder(w).Encode(TeachersResponse{
-		Success:  true,
-		Teachers: result,
-	})
-}
-
 func (_self TeacherHandlers) GetTeacherByID(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
-	result, err := teacherServices.GetTeacherByID(id)
+	result, err := _self.TeacherServices.GetTeacherByID(id)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -82,7 +68,7 @@ func (_self TeacherHandlers) GetTeacherByID(w http.ResponseWriter, r *http.Reque
 func (_self TeacherHandlers) DeleteTeacher(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 
-	if err := teacherServices.DeleteTeacher(id); err != nil {
+	if err := _self.TeacherServices.DeleteTeacher(id); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -108,7 +94,7 @@ func (_self TeacherHandlers) UpdateTeacher(w http.ResponseWriter, r *http.Reques
 	}
 
 	convertedTeacher := transformTeacherRequestToTeacherModel(teacher)
-	err := teacherServices.UpdateTeacher(id, &convertedTeacher)
+	err := _self.TeacherServices.UpdateTeacher(id, &convertedTeacher)
 
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

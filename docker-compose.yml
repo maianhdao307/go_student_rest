@@ -1,0 +1,41 @@
+version: '3.1'
+
+services:
+  postgresdb:
+    container_name: postgres-server
+    restart: always
+    image: postgres:latest
+    volumes:
+#      - pgdata:/var/lib/postgres
+      - ./postgresdbinit:/docker-entrypoint-initdb.d
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=school
+    networks:
+      - school-network
+
+  backend:
+    container_name: golang-api
+    restart: unless-stopped
+#    volumes:
+#      - ./apis:/usr/src/app/
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresdb
+    networks:
+      - school-network
+
+volumes:
+#  pgdata:
+  postgresdbinit:
+
+networks:
+  school-network:
+    driver: bridge

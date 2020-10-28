@@ -22,11 +22,6 @@ func (_self StudentRequest) validation() error {
 	return nil
 }
 
-type StudentsResponse struct {
-	Success  bool                         `json:"success"`
-	Students []*repositories.StudentEntity `json:"students"`
-}
-
 type StudentResponse struct {
 	Success bool                       `json:"success"`
 	Student *repositories.StudentEntity `json:"student"`
@@ -50,11 +45,6 @@ func (_self TeacherRequest) validation() error {
 		return errors.New("last name is required")
 	}
 	return nil
-}
-
-type TeachersResponse struct {
-	Success  bool                         `json:"success"`
-	Teachers []*repositories.TeacherEntity `json:"teachers"`
 }
 
 type TeacherResponse struct {
@@ -94,15 +84,19 @@ type RegisterCourseRequest struct {
 }
 
 func (_self RegisterCourseRequest) validation() error {
+	var errMessage = ""
 	if _self.Student == nil {
-		return errors.New("student is required")
-	}
-	if err := _self.Student.validation(); err != nil  {
-		return err
+		errMessage += "student is required\n"
+	} else {
+		if err := _self.Student.validation(); err != nil  {
+			errMessage += err.Error() + "\n"
+			return err
+		}
 	}
 
 	if _self.Course == nil {
-		return errors.New("course is required")
+		errMessage += "course is required"
+		return errors.New(errMessage)
 	}
 	convertedCourse := CourseRequest{
 		Name: _self.Course.Name,
@@ -110,13 +104,19 @@ func (_self RegisterCourseRequest) validation() error {
 		EndTime: _self.Course.EndTime,
 	}
 	if err := convertedCourse.validation(); err != nil  {
-		return err
+		errMessage += err.Error() + "\n"
+		return errors.New(errMessage)
 	}
 	if _self.Course.Teacher == nil {
-		return errors.New("teacher is required")
+		errMessage += "teacher is required"
+		return errors.New(errMessage)
 	}
 	if err := _self.Course.Teacher.validation(); err != nil {
-		return err
+		errMessage += err.Error() + "\n"
+		return errors.New(errMessage)
+	}
+	if errMessage != "" {
+		return errors.New(errMessage)
 	}
 	return nil
 }
